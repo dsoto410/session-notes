@@ -1,0 +1,70 @@
+datatypes
+	1. primitative datatypes -
+	2. derived datatypes / non-primitive datatypes
+	
+
+object oriented programming
+class  - design/template/blueprint/sketch/ framework/skeleton
+
+object - an instance of a class
+       - has certain behaviour
+
+all keywords in java - small letters	
+
+Naming convention ( strictly strictly followed)
+	class - title cased, Eg. FordFigo, BankAccount, etc
+	variables/methods - camel cased, Eg. numberPlate, startEngine()
+
+
+a class contains
+	- variables / attributes / properties / data members / state
+	- methods / functions / member functions / behaviour
+	- nested class
+	- static block
+
+
+two types of variable 
+----------------------
+1) instance variable/ variable
+	these are variables declared in side a class and outside the method
+	memory is always allocated in heap
+	if not initialized will hold default value
+		byte, short, int, long = 0
+		float, double = 0.0
+		char = '\o'
+		boolean = false
+		object ref variable = null
+	the memory is realease only when the garbage collector runs
+
+2) local variable
+	these are declared inside a method
+	memory is always allocated in stack
+	if not initialized will hold garbage value
+	memory is automatically deallocated when the method in which it is declared is over
+
+
+
+input - in main method
+process - in the bussiness methods
+output - in main method
+
+constructor
+-----------
+	- a method, but a special method
+	- has the same name as that of the class
+	- they are called automatically when an object is created 
+	- does not have a return type, not even void
+	- the purpose is to initialize instance variables  of the class
+	- can be overloaded
+	- when no constructor is provided a default constructor is injected into your class
+	- the moment yopu provide a constructor, the default constructor is no longer injected
+	
+constructor chaining
+--------------------
+hint : this()
+
+
+
+
+
+
