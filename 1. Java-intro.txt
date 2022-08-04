@@ -1,0 +1,122 @@
+archive types
+--------------
+.jar - java archive
+.war - web archive
+.ear - enterprise archive ( .jar + .war)
+
+editions of java
+-----------------
+J2SE - Java 2 Standard Edition -  this is our focus
+J2EE - Java 2 Enterprise Edition
+J2ME - Java 2 Micro Edition
+
+Java software
+--------------
+
+JDK - Java Development Kit
+JRE - Java Runtime Enviroment
+JVM - Java Virtual Machine
+
+
+Demo.java ---> compile(javac) ---> Demo.class ---> executed(java) ----> output ( for this we need JDK)
+(source code)			   (Byte code)
+
+Demo.class ---> executed(java) ----> output ( for this we just need the JRE)
+
+JDK = JRE + java compiler
+
+JRE = JVM + Class Loader + Byte code verifier + Garbage collector + Default handler + more
+
+Types of programs
+-----------------
+1. System programs
+	- created for the system to work
+	- OS, Loader, etc
+	- C language, concept of pointers
+2. Application programs
+	- created for end users
+	- MS Word, ecxel, ppt, bank management system
+	- Java is used to create application programs
+
+Types of programming Paradigm
+-----------------------------
+1. Procedural programming
+	- not convienient to create application programs
+	- eg. C/c++
+2. Object oriented programming
+	- eg. java, c++
+
+
+Features of java - please refer internet to see the list of features of java (interview question)
+----------------
+1) Object oriented programming language
+	- classes and objects
+2) Platform independent ( interview question)
+
+	
+C compilation and execution
+---------------------------
+First.c ----> compile ----> First.exe ------> execute -------> output
+
+First.exe hold low level information about the platform in which it was created
+First.exe is platform dependent
+
+Java compilation and execution
+-------------------------------
+Demo.java ---> compile(javac) ---> Demo.class ---> executed(java) ----> output ( for this we need JDK)
+(source code)			   (Byte code)
+
+Demo.class does not hold any low level information thereby not making it platform dependent
+Demo.class is platform independent
+JVM becomes platfrom ddependent
+
+low level info - the addressing - 32 bit or 64 bit
+
+
+Java - takes the syntax from c
+     - takes oops(modified version) concept from c++
+
+
+things that you do in a program
+-------------------------------
+input
+computation/ processing/bussiness logic
+output
+
+
+variables - stores a value
+	  -  can change the value of a variable
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
