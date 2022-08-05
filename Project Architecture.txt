@@ -1,0 +1,50 @@
+
+
+Any program has 3 parts
+input 
+process
+output
+
+The project that I would be working on
+--------------------------------------
+Book Mangement System
+	- List all the books
+	- Add a new book
+	- Update an Existing book
+	- Delete an Existing book
+	- Exit
+
+3 layered architecture - seperation of concerns
+-----------------------
+presentation layer
+------------------
+	- view of your application
+	- take any inputs from the user and display any outputs on the console
+	- inputs are done with Scanner API and outputs are done with System.out in a console based application
+	- the main method will the presentation layer
+
+service layer
+-------------
+	- is responsible for processing your inputs and returns back the output/result/computation back to the presentaion layer
+	- we should never work with Scanner API or System.out in the service
+	- 
+
+dao (Data Access Object) layer
+------------------------------
+	- my java would want ot interact with a Database. This is the right place to do it
+
+flow of data 
+-------------
+presentation -> service -> Dao ->Database
+	     <-         <-     <-
+
+coupling
+--------
+loosely coupled project - we want to have this in the project
+tightly coupled project
+
+POJO - Plain Old Java Object
+     - carry the data to and fro from one layer to another
+     - a POJO is not a layer of your project
+     - it is more like a data holder/encapulator
+
