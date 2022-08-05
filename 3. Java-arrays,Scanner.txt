@@ -1,0 +1,39 @@
+
+
+Java arrays
+-----------
+	- arrays are objects
+	- help us to store multiple values of the same data type
+	- arrays are accessed using the index
+	- can create 1 dimensional, 2 dimensional, 3 dimensional etc
+	- we also have irreregular arrays in java
+
+Scanner API
+------------
+	- to get inout from the user
+	- this api is available in java.uutil package
+	- we have to import java.util.Scanner into the program
+
+System.in - refers to the keyboard
+System.out - refers to console
+System.err - - use this when we want to print error on the console
+
+String API
+
+SDLC  - Self Study
+
+
+lexical comparison
+
+String str1 = "hello";
+String str2 = "hellos";
+
+int result = str1.compareTo(str2); //use case : to sort an array of string in asc/ dsc order
+boolean result2 = str1.equals(str2);
+
+System.out.println(result);
+
+
+
+
+
