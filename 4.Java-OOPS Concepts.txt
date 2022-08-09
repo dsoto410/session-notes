@@ -1,0 +1,131 @@
+OOPS Concept - Pillars of objected programming
+-----------------------------------------------
+A - Abstraction
+P - Polymorphism
+I - Inheritence
+E - Encapsulation
+
+Inheritance
+-----------
+	- a class can inherit the members of another class
+	- we use the extends keyword
+	- the class that extends is called the child class / derived class / sub class
+	- the class that is being extended is called the parent class / base class / super class
+	- inheritance gives me code reusablity 
+	- when a child class extends a parent class it can access the members of the parent class as if it were it's own member
+	- make sure the classes satisfy the is-a relation	
+	- inheritance gives us an enchanced version of an existing object
+	- types of inheritance
+	-----------------------
+		- single level inheritance
+		
+		- multi level inheritance
+
+		- heirarchical inheritance
+	
+		- multiple inheritance
+			- this is not supported by java
+
+types of relation between 2 classes
+------------------------------------
+	- is-a
+		- acheived through inheritance
+	- has-a
+		- is not acheived through inheritence
+		- is acheived through composition and aggregation
+		- we declare an object of a class as a member in another class
+
+Polymorphism
+------------
+	- means more than one form
+	- method overloading
+		- is a compile time(static) polymorphism
+		- have same method name but different parameters
+		- different parmaters could be 1) no. of parameters 2) type of parameter 3) order of the parameters
+		- we do not consider the return type of the method here
+		- inheritence is not a pre-requisite here
+		- purpose : convinience
+		- Eg. System.out.println("hello");
+		      System.out.println(45);
+		      System.out.println(true);
+
+			// if there was no method over loading
+		      System.out.printlnString("hello");
+		      System.out.printlnInt(45);
+		      System.out.printlnBoolean(true);
+			
+	- method overriding
+		- is also called runtime(dynamic) polymorphism
+		- because the binding of the overriding method to the refernce variable happens at runtime
+		- inheritence is a pre-requisite 
+		- have a method with same name, same arguments and same return type in a super and a sub class
+		-  then we say that the method in the super class is over ridden by the method in the sub class
+		- we are redefining an existing functionality of the super class in the sub class
+
+
+Encapsulation
+-------------
+	- wrapping up of properties and methods into a single unit called class
+	- hiding of the data
+	- we can make use of the access specifiers 
+	- access specifiers are to be used in front of the members of the class
+	- you can use public or default in front of a class
+	- making a class public doest mean that all its members are implicitly public
+	- you can put private in front of a class provided the class has to be a nested/inner class
+	- encapsulation says that make your data member/properties private and give access through public getters and setters
+	- the getters give the read access to the property/ data member
+	- the getters are also called accessors
+	- the setters give the write access to the property/ data member
+	- the setters are also called mutators
+	- using the getters and setters we can control the read and write access of the properties
+--------------------------------------------------------------------------------------------------------------------
+Access Specifiers		within class	within package	outside package+inherited class	 outside package		
+-----------------------------------------------------------------------------------------------------------------------
+private				yes			no		no				no
+default/no modifier		yes			yes		no				no	
+protected			yes			yes		yes				no
+public				yes			yes		yes				yes
+
+private is the most restricted
+public is the least restricted
+
+
+
+toString()
+----------
+	- whenever we need a meaningful representation of the object overirde the toString() method of the Object class
+	- refer the online docs for toString method in the Object class
+
+equals() and hashcode()
+-----------------------
+
+refernce
+ https://docs.oracle.com/javase/8/docs/api/
+
+	- every object that is created has a hashcode generated for it
+A
+	abstraction --- 356
+	abstraction --- 245
+	abstract --- 115
+
+B
+C
+	
+D
+
+Abstraction
+------------
+	- highlighting of the essential features
+
+
+
+
+
+
+
+
+
+
+
+
+
