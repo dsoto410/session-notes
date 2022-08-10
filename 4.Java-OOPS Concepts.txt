@@ -116,16 +116,94 @@ D
 Abstraction
 ------------
 	- highlighting of the essential features
+	- acheived through abstract classes and interfaces
+
+	- abstract class
+		- an abstract class can have one or more abstract methods
+		- an abstract method has only the method declaration and no definition/body
+		- when the class becomes abstract, the class is incomplete
+		- for that very reason we cannot create objects of abstract classes
+		- abstract classes are meant to be inherited
+		- this class which inherits the abstract class has to make sure that the abstract method is overridden
+		- this class can be called a complete class/ concrete class
+
+		- an abstract class gives is-a relation to the concrete class
+		- an abstract forces the concreted class to provide the functionality that it wants to
+
+		- can a class be abstract with no abstract methods?
+		- can the class which extends the abstract class not override the abstarct method? if so what would happen to that class?
+
+	- interfaces
+		- interface is a pure abstract class ( this definition holds good until java 8)
+		- interface can also have variables declared in them and they are by default public static final
+		- the methods inside an interface is by default public and abstract
+		- from java 8 and up, an interface can have abstract method( methods with no body), default method ( methods with body), static method ( static methods are with body)
+		-	interface MyInter{
+				double PI = 3.14;
+				void method1();
+				void method2();
+			}
+		- we cannot create an object for an interface
+		- interfaces are meant to be implemented by a class
+		- when a class implements an interface, it has to implement/override the abstract methods of the interface
+		- now this class is generally called as the implementation class of the interface
+		- class MyClass implements MyInter{
+			public void method1(){}
+			public void method2(){}
+			public void method3(){}
+		}
+
+		- an interface is a contract to a class
+		- an interface does not give is-a relation to the class
+		- an interface can extends another interface, but that doesnt mean it has inheritence
+		- a class an implement any number of interfaces
+
+example
+--------
+	interface SafetyGuidelines2022{
+		void protectHead();
+		void protectFeet();
+	}
 
 
+	interface SafetyGuidelines2025 extends SafetyGuideline2022{
+		void insureLives();
+	}
+	abstract class ConstructionCompany{
+		void constructHouses();
+
+	}
+	class LarsenTurbo extends ConstructionCompany implements SafetyGuidelines2022{
+		public void protectHead(){
+			System.out.println("provides fiber helmets....");
+		}	
+		public void protectFeet(){
+			System.out.println("provides fiber shoes....");
+		}
+		void constructHouses(){}
+		// extra methods	
+	}
+
+	class Opaline extends ConstructionComapny implements SafetyGuidelines2022{
+		public void protectHead(){
+			System.out.println("provides steel helmets....");
+		}	
+		public void protectFeet(){
+			System.out.println("provides steel shoes....");
+		}	
+		void constructHouses(){}
+		// extra methods
+	}
 
 
+combination
+-----------
 
+	a class  ----extends -----> a class
+	a class ---implements----> interface, interface, interface ..
+	a interface ----extends----> interface, interface, interface
+	a interface ----no relation----> class
 
-
-
-
-
-
+SQl JDBC - Connection, Statement
 
 
