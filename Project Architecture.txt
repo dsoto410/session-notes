@@ -26,6 +26,7 @@ presentation layer
 service layer
 -------------
 	- is responsible for processing your inputs and returns back the output/result/computation back to the presentaion layer
+	- if required it will call the methods of the dao layer
 	- we should never work with Scanner API or System.out in the service
 	- 
 
@@ -46,5 +47,5 @@ tightly coupled project
 POJO - Plain Old Java Object
      - carry the data to and fro from one layer to another
      - a POJO is not a layer of your project
-     - it is more like a data holder/encapulator
+     - it is more like a data holder/encapsulator
 
