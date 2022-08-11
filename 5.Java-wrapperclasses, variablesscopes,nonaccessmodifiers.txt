@@ -1,0 +1,249 @@
+Wrapper classes
+---------------
+
+data-types in java
+-------------------
+	1) primitive data types
+		- example : the 8 primitive data types
+			byte
+			short
+			int
+			long
+			float
+			double
+			boolean
+			char
+		- primitive data types starts with small letter
+		- primitive data types are not objects
+
+	2) non-primitive data types / derived data-types
+		- example : reference variables of objects, arrays
+
+java gave us 8 equivalent wrapper classes for the 8 primitive data types
+
+	
+			byte        	Byte
+			short		Short
+			int		Integer
+			long		Long
+			float		Float
+			double		Double
+			boolean		Boolean
+			char		Character
+
+
+		int mark = 50; // primitive type
+		Integer score = new Integer(70); // Wrapper class type
+
+		boolean result = true;
+		Boolean flag = new Boolean(true);
+
+	from java 1.8 we have autoboxing concept
+		int myMark = 70;
+		Integer score = myMark; // here we are assigning a primitive type to a Wrapper type
+		int finalScore = score; // here we are assigning a wrapper type to primitive type
+
+
+Generics  - available from java 1.8 - uses objects which are Wrapper types
+Collection - uses objects which are Wrapper types
+
+
+String is like the universal data type
+Have to know these conversions
+-----------------------------
+	- Wrapper types to String
+		Integer mark = 60; // possible because of autoboxing other wise we should have said Integer mark = new Integer(60);
+		String myMark = mark+"";
+		String myMark1 = String.valueOf(mark); // another way
+		
+
+	- String to Wrapper types
+		String number1 = "6";
+		String number2 = "8";
+		Integer n1 = Integer.parseInt(number1); // this parses the String and converts it to wrapper type Integer
+		Integer n2 = Integer.parseInt(number2);
+
+		String number3 = "45.67";
+		Double n3 = Double.parseDouble(number3);
+		
+		String flag = "true";
+		Boolean result = Boolean.parseBoolean(flag);
+
+	- primitives to String
+		int mark = 30;
+		String myMark = mark+"";
+		String myMark1 = String.valueOf(mark); // another way
+
+	- String to primitive
+		String number1 = "6";
+		String number2 = "8";
+		int n1 = Integer.parseInt(number1); // this parses the String and converts it to wrapper type Integer and stores it in primitive type - thanks to autoboxing
+		int n2 = Integer.parseInt(number2);
+
+		String number3 = "45.67";
+		double n3 = Double.parseDouble(number3);
+		
+		String flag = "true";
+		boolean result = Boolean.parseBoolean(flag);
+		
+
+"45", "true", "56.87"
+
+"6" + "8" = 68
+6 + 8 = 14
+
+Variables scopes
+----------------
+	- it talks about the lifetime of the variable
+   scopes of a variable
+   ---------------------
+	- class scope
+		- instance variables
+		- class Room{
+			int length; // has class scope
+		  }
+		- these variables can be accessed by all the methods of the class
+		- these variables take memory on heap
+		- these variables lifetime are as long as the object is in heap
+
+	- local scope
+		- local variables
+		- these variables are declared inside a method
+		- they take memory in stack
+		- their lifetime is until the method finishes its execution
+
+	- block scope
+		- we declare variables within a block
+		- a block is { }
+		- void display(){
+			-----
+			-----
+			if(condn){
+				int mark = 50;
+
+			}
+			// mark cannot be used here as it has a block scope which is inside if
+
+		  }
+		- the variable is available within the block
+
+non access modifiers
+--------------------
+- final
+	- in front of a variable
+		- behaves like a constant
+		- final double PI = 3.14;
+			PI = 3.15; // compilation error
+			System.out.println(PI); // valid
+		- naming convention - all caps
+			final int MIN_AGE = 21;
+	
+	- in front of a method definition
+		- stops method overriding
+		- none of the sub classes can overide a final method present in the super class
+
+	- in front of a class
+		- stops inheritence
+		- we cannot extend a final class
+
+a question to think about - Can I use abstract and final in front of a class?	no 
+
+- synchronized
+	- used in multithreading
+	- in front of a method and can have synchronized block
+	- used to make the resources safer/protect from multiple threads
+
+- native
+	- used in front of method
+	- native methods are methods written in a language other than java
+	- mostly c/c++
+
+- transient
+	- is used in front of instance variables
+	- the variable which is transient is not persisted during Serialization
+	- as a result the transient variable cannot be retrieved during Deserialization
+
+- static
+	- in front of a varibale
+	- static variables occupy only one memory in heap for each object created
+	- static variables are shared by different objects of the same type
+	- static variables belong to the class and not to a particular object
+	- when is memory for static variables allocated? it is allocated much before an obejct is created
+	- when is memory for non-static variables allocated? whenever an object is created	
+		
+	- sequence of the steps
+	-----------------------
+	Room room5; // room5 is a local variable, so if not initiialized will hold garbage value
+	1) The class gets loaded from secondary to the primary memory(RAM - JRE) - who does this ? the class loader which is a a part of the JRE
+	2) Allocates memory for the static variables of that class
+	3) static blocks are called/executed automatically in the order in which it is present
+
+	room5 = new Room();
+	4) Allocates memory for non-static variables
+	5) constructors are automatically called
+
+	Room room6 = new Room(); // this time step 1,2,3 will not work. Only step 4 and 5 will take place
+	Room room6; // local variable is created
+	room6 = new Room() // now a Room object is created and the local variable points to that object
+
+	- now that static variables' memory is allocated even before the object is created, you can access static members using the class name
+		Room.height = 150;
+
+	
+	
+
+	
+		class Room{
+			int length;
+			int width;
+			static int height;
+
+		}
+
+
+		main()
+			Room room1 = new Room();
+			room1.setHeight(150);
+				----
+			Room room100 = new Room();
+			room100.setHeight(150);
+
+	- in front of a method
+		- methods whose logic is common and not specific to an object can be made static
+		- just like how static variables can be accessed using the class name, static methods can also be accessed using class name
+			Room.doubleHeight();	
+
+	- in front of a class
+		- but it has to be an inner class
+
+	- static blocks
+		- just like how we have constructors to initialize non-static variables, static blocks are for intiializing static variables
+		- can have any number of static blocks
+		- they are automaticcaly called after memory for the static varaibles are allocated
+
+		class Room{
+			int length;
+			int width;
+			static int height;
+
+			static{
+				height = 150;
+			}
+
+			Room(int length, int width){
+				this.length = length;
+				this.width = width;
+			}
+
+			// other methods
+		}
+
+	questions
+	---------
+	1) can a static method access a non static member?
+		no 
+	2) can a non-static method access a static member?
+		yes
+
+
+
