@@ -1,0 +1,161 @@
+exception handling
+------------------
+
+5 keywords
+
+1) try
+2) catch
+3) finally
+	- a finally block can placed after the cacth block
+	- a finally block is executed whether an exception is thrown or not thrown 
+	- any resources that are opened in th try block has to be closed in the finally block
+	- newer version of java gives us the try with resources syntax - please explore
+		try {}
+		catch(...){}
+		catch(...){}
+		finally{}
+
+		//other combinations
+		try
+		catch
+		catch
+	
+		try 
+		catch
+		catch
+		finally
+
+		try
+		finally
+4) throws 
+	- throws is a message to the caller method that the current method is capable of throwing an exception, so you (caller method) please handle it
+	- throws propagates the exception to the caller method
+	
+	class Test
+	{
+
+		void method1()throws ClassCastException, NullPointerException{
+			---
+			--- // may throw an exception
+		}
+		void method2()throws ClassCastException{
+			--
+			
+				method1();
+			
+			---
+		}
+		void method3() throws ClassCastException{
+			----
+			----
+			method2();
+		}
+	}
+		
+	class Demo{
+		public static void main(String args[]){
+			Test test = new Test();
+			try{
+
+			test.method3();
+			}
+			catch(ClassCastException ce){
+				---
+			}catch(NullPointerException ne){
+				--
+			}
+			
+		}
+	}
+
+
+5) throw
+	- used to explicitly throw an exception
+	- try{
+		----
+		---
+		throw new ArithmeticException();
+	}
+	catch(ArithmeticException ae){
+		---
+	}
+		
+	- throw is used to throw custom exception
+	- can use throw to rethrow an exception as another exception(mostly custom exception)
+
+		class InvalidOptionException extends Exception{
+
+			int option; 
+			public InvalidOptionException(int option){
+				this.option = option;
+			}
+			
+			@Override
+			public String getMessage(){
+				return option + " is an invalid option!";
+			}
+		}
+
+
+		class Demo{
+
+			...main..{
+				Scanner scan ....
+				int userOption = 
+				try{
+					if(userOption < 1 || userOption > 6){
+						throw new InvalidOptionException(userOption);
+					} 
+				}catch (InvalidOptionException ie){
+					System.out.println(ie.getMessage());
+				}
+			}
+		}
+
+exceptions can be categorized in 2 - interview question
+----------------------------------
+1) checked exceptions
+	- the siblings of RuntimeException comes under checked exception
+	- also called compiler enforced exception
+2) unchecked exception
+	- the sub classes of RuntimeException comes under unchecked exceptions
+	- are not compiler enforced
+	- unchecked exception ideally should not occur in your code
+		Room room1 = null;
+		room1.calculateFloorArea(); // will give NullPOinterException
+
+		Dog dog = new Dog();
+		Snake snake = (Snake) dog; // will give ClassCastException
+
+	- it has to be programatically handled
+		if(room1 != null){ // this will avoid NullPointerException
+			room1.calculateFloorArea(); 
+		}
+		
+		if(dog instanceof Snake){  // this will avoid ClassCastException		
+			Snake snake = (Snake) dog; 
+		}
+		
+a few points to keep in mind
+----------------------------
+1) a try block can be followed by multiple catch blocks
+2) however during execution only one of the catch blocks will be executed
+	try{
+		stm1;
+		stm2; // may throw NullPointerException
+		stmt3;
+		stmt4; // may throw ClassCastException
+		stmt5;
+	} catch(ClassCastException ce){
+		----
+		// never leave the catch blocks empty
+	} catch(NullPointerException e){
+		----
+		// never leave the catch blocks empty
+	}
+3) the inbuilt exceptions have a heirarchy
+		
+	refer - https://www.benchresources.net/wp-content/uploads/2017/02/exception-hierarchy-in-java.png
+	- Error is not handled in catch blocks in java because there is nothing that we can do about it
+4) if you have multiple catch blocks, make sure the most general(super class) catch blocks are placed at the last, if not it will result in compilation error
+
