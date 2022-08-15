@@ -50,7 +50,7 @@ steps
 ------
 	-pre requisite for client to contact the server - the server should be up and running
 	--------------------------------------------------------------------------------------
-		I went to the services, and make sure postgres 14 server service is running
+		I went to the services, and made sure postgres 14 server service is running
 
 	-to connect to postgres server from command prompt (cmd)
 	---------------------------------------------------
@@ -105,3 +105,56 @@ the SQL queries are categorized into 5
 
 Normalization
 ACID properties of Transaction
+
+Queries that I used in session
+------------------------
+1)
+CREATE DATABASE book_management_system;
+
+2)
+\c book_management_system;
+
+3) 
+\l;
+
+4)
+\dt;
+
+5)
+CREATE TABLE book_details(book_id  INT, book_title VARCHAR(100), book_author VARCHAR(50), book_genre VARCHAR(20), book_cost INT, book_image_url VARCHAR(255));
+
+6) 
+ALTER TABLE book_details DROP COLUMN book_image_url;
+
+7) 
+ALTER TABLE book_details ADD COLUMN book_image_url VARCHAR(255);
+
+8) 
+ALTER TABLE book_details ALTER COLUMN book_image_url TYPE VARCHAR(250);
+
+9)
+DROP TABLE book_details;
+I created the table again
+
+10)
+INSERT INTO book_details VALUES(101, 'Harry Potter and the Chamber of Secrets', 'J.K.Rowling', 'Fiction', 45, '');
+INSERT INTO book_details VALUES(102, 'Harry Potter and the Half Blood Prince', 'J.K.Rowling', 'Fiction', 40, '');
+SELECT * FROM book_details;
+
+11)
+UPDATE book_details SET book_cost=42 WHERE book_id=102;
+UPDATE book_details SET book_cost=42;    -----------> be careful with this query
+SELECT * FROM book_details;
+
+12)
+DELETE FROM book_details WHERE book_id=102;
+SELECT * FROM book_details;
+
+13)
+DROP TABLE book_details;
+CREATE TABLE book_details(book_id  INT GENERATED ALWAYS AS IDENTITY, book_title VARCHAR(100), book_author VARCHAR(50), book_genre VARCHAR(20), book_cost INT, book_image_url VARCHAR(255));
+INSERT INTO book_details(book_title, book_author, book_genre, book_cost, book_image_url) VALUES('Harry Potter and the Chamber of Secrets', 'J.K.Rowling', 'Fiction', 45, '');
+INSERT INTO book_details(book_title, book_author, book_genre, book_cost, book_image_url) VALUES('Harry Potter and the Order of Phoenix', 'J.K.Rowling', 'Fiction', 40, '');
+INSERT INTO book_details(book_title, book_author, book_genre, book_cost, book_image_url) VALUES('Harry Potter and the Half Blood Prince', 'J.K.Rowling', 'Fiction', 30, '');
+SELECT * FROM book_details;
+
