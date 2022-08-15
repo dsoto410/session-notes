@@ -1,0 +1,107 @@
+ways to store data permanently 
+1) Files
+2) DBMS
+
+CRUD
+----
+C - Create
+R - Read
+U- Update
+D - Delete
+
+DB - Database
+DBMS - Database Management System/Software
+     - a software 
+
+Database software product and its vendors
+------------------------------------------
+1) Oracle provided by Oracle Corporation
+2) SqlServer provided by Microsoft
+3) MySql
+4) Postgres
+
+SQL - Structured Querying Language, ANSII SQL
+
+some diferrences/variations is called the dialect - Oracle dialect, postgres dialect, 
+
+
+Client/Server Architecture
+-------------------------
+	- multi user DB which uses client/server communication
+	- a web server host a web application which can provide a webpage upon a request from a client
+	- a file server hosts files which can provide files upon a request from a client
+	- a database server hosts database which provide data upon a request from the client
+
+	- in order for any client to contact the server, info that the client should know
+		1) Protocol
+		2) IP address of the computer in which the server is running
+		3) Port number - a 4 digit, many servers listen on their default port numbers, like tomcat(web server) - 8080, weblogic(web server) - 7001, 
+												postgres(database server) - 5432
+		4) credentials - username/ password
+
+after installing postgres you have the 
+		- postgres server
+		- postgres clients - psql (CLI), we can find psql here - C:\Program Files\PostgreSQL\14\bin
+				   - pgadmin4 (GUI), we can find pgadmin here - C:\Program Files\PostgreSQL\14\pgAdmin 4\bin
+				   - dbeaver (GUI) , has to be installed seperately
+				   - java program
+
+steps
+------
+	-pre requisite for client to contact the server - the server should be up and running
+	--------------------------------------------------------------------------------------
+		I went to the services, and make sure postgres 14 server service is running
+
+	-to connect to postgres server from command prompt (cmd)
+	---------------------------------------------------
+		C:\Program Files\PostgreSQL\14\bin>psql --host=localhost --port=5432 --username=postgres --password
+			- here --host, --port, --password in not required as long as you choose to work with the default settings
+			- once you enter the password, psql will connect to the server and we should see postgres=# prompt
+
+
+database 
+	- a collection of tables
+	- the postgres installation has a default database created called postgres
+	- you can list all the databases available in the server
+		use \l to list all the databases
+	- the prompt tell us the database that we are connected to.
+	- you can create your own databases
+		create database <db name>;
+	- you can connect/switch to a db 
+		\c <db name>
+		now the prompt would change to the db name
+table
+	- has rows and columns
+	- each row in a table is called a record
+	- store the data
+	- command to list all the tables in the current/connected DB
+		\dt 
+
+the commands that start with backslash are called meta commands - specifc to postgres
+
+the SQL queries are categorized into 5
+--------------------------------------
+	1) DDL - Data Definition Language
+			- work with the structure of the table
+			- create a table, alter a table, drop a table
+
+	2) DML - Data Manipulation Language
+			- work on the data present in a table
+			- insert a record, update a record, delete a record
+			
+	3) DQL - Data Querying Language
+			- fetch the record from the table
+			- select query
+			- though there is only 1 query it has multiple clauses
+
+	4) TCL - Transaction Querying Language
+			- work with transactions
+			- commit, rollback, savepoints
+
+	5) DCL - Data Control Language
+			- granting/revoke priveleges to/from users
+			- a previlege could be creating a table, insert record into the table etc 
+			
+
+Normalization
+ACID properties of Transaction
