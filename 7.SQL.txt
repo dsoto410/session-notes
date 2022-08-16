@@ -1,3 +1,7 @@
+Reference document
+ - https://www.postgresqltutorial.com/postgresql-getting-started/what-is-postgresql/
+
+
 ways to store data permanently 
 1) Files
 2) DBMS
@@ -28,7 +32,7 @@ some diferrences/variations is called the dialect - Oracle dialect, postgres dia
 Client/Server Architecture
 -------------------------
 	- multi user DB which uses client/server communication
-	- a web server host a web application which can provide a webpage upon a request from a client
+	- a web server hosts a web application which can provide a webpage upon a request from a client
 	- a file server hosts files which can provide files upon a request from a client
 	- a database server hosts database which provide data upon a request from the client
 
@@ -157,4 +161,186 @@ INSERT INTO book_details(book_title, book_author, book_genre, book_cost, book_im
 INSERT INTO book_details(book_title, book_author, book_genre, book_cost, book_image_url) VALUES('Harry Potter and the Order of Phoenix', 'J.K.Rowling', 'Fiction', 40, '');
 INSERT INTO book_details(book_title, book_author, book_genre, book_cost, book_image_url) VALUES('Harry Potter and the Half Blood Prince', 'J.K.Rowling', 'Fiction', 30, '');
 SELECT * FROM book_details;
+
+
+
+Contraints
+----------
+- controls the data that you add to the table
+- can be added in 3 ways
+	1) column level constraint ( at the time of creating the table)
+
+CREATE TABLE person (
+	id SERIAL PRIMARY KEY,
+	first_name VARCHAR (50),
+	last_name VARCHAR (50),
+	email VARCHAR (50) UNIQUE
+);
+
+	2) table level constraint ( at the time of creating the table)
+
+CREATE TABLE person (
+	id SERIAL  PRIMARY KEY,
+	first_name VARCHAR (50),
+	last_name  VARCHAR (50),
+	email      VARCHAR (50),
+        UNIQUE(email)
+);
+	3) Alter the table to add the contraint ( after the table has been created)
+
+ALTER TABLE production_orders 
+ALTER COLUMN qty
+SET NOT NULL;
+
+ALTER TABLE book_details ALTER COLUMN book_title SET NOT NULL;
+ALTER TABLE book_details ALTER COLUMN book_author SET NOT NULL;
+ALTER TABLE book_details ALTER COLUMN book_genre SET NOT NULL;
+ALTER TABLE book_details ALTER COLUMN book_cost SET NOT NULL;
+
+
+Primary Key
+	- every table should have a primary key column/contraint
+	- a column declared with primary key contraint by default is UNIQUE and NOT NULL
+	- the primary key column is automatically indexed
+
+UPDATE employee_details SET emp_city='Atlanta' WHERE emp_id=6784;
+
+
+ 	CREATE TABLE book_details(book_id  INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
+				  book_title VARCHAR(100) NOT NULL, 
+				  book_author VARCHAR(50) NOT NULL, 
+				  book_genre VARCHAR(20) NOT NULL, 
+				  book_cost INT NOT NULL, 
+				  book_image_url VARCHAR(255));
+
+
+Foreign keys
+------------
+
+CREATE TABLE department_details (dept_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, dept_name VARCHAR(20) NOT NULL);
+
+// CREATE TABLE employee_details(emp_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, emp_name VARCHAR(40) NOT NULL, emp_contact INT NOT NULL, emp_dept_id INT);
+
+CREATE TABLE employee_details(emp_id INT GENERATED ALWAYS AS IDENTITY, 
+			      emp_name VARCHAR(40) NOT NULL, 
+                              emp_contact INT NOT NULL, 
+                              emp_dept_id INT, 
+                              PRIMARY KEY(emp_id),
+			      FOREIGN KEY(emp_dept_id) REFERENCES department_details(dept_id)
+                             );
+
+
+
+an employee belongs to a department
+
+employee to department - many to one
+department to employee - one to many
+
+an employee works in a project
+
+employee to project - many to one
+project to employee  - one to many
+
+an employee stays in an address
+
+employee to address  - one to one
+address to employee - one to one
+
+an employee has a user information
+
+employee to user - one to one
+user to employee  - one to one
+
+an employee can enroll for courses
+
+employee to course - many to many
+course to employee - many to many
+
+ a many to many relation between 2 tables will introduce a third table - employee_course_details
+
+------------------------------------------------------------------------------------------------
+employee_course_details
+	emp_course_id(PK)
+	emp_id(FK)
+	course_id(FK)
+
+department_details
+	dept_id(PK)
+	dept_name
+
+project_details
+	project_id (PK)
+	project_name
+
+address_details
+	address_id (PK)
+	address_city
+
+user_details
+	user_id(PK)
+	user_name
+	user_password
+
+course_details
+	course_id(PK)
+	course_name
+
+employee_details
+	emp_id(PK)
+	emp_name
+	emp_contact
+	emp_dept_id(FK)
+	emp_proj_id(FK)
+	emp_address_id(FK)
+	emp_user_id(FK)
+---------------------------------------
+
+
+
+course_details
+	course_id (PK)
+	course_name
+
+student_details
+	student_id (PK)
+	student_name
+	student_contact
+	
+
+muliplicity
+-----------
+	one to one
+	one to many
+	many to one
+	many to many
+	
+
+------------------------------------------
+for project 1
+--------------
+
+a user has accounts
+
+user to account - one user can have many accounts - one to many
+account to user - many accounts belongs to one user - many to one
+
+user_details
+	user_id(PK)
+	user_name
+	user_password
+
+account_details
+	acc_id(PK)
+	acc_holder_name
+	acc_holder_address
+	acc_holder_contact
+	acc_balance
+	acc_user_id(FK)
+	
+----------------------------------------------------
+
+
+
+
+
 
