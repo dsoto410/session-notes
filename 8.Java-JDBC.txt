@@ -1,0 +1,59 @@
+JDBC - Java Database Connectivity
+----------------------------------
+
+
+Types of JDBC Drivers - interview question
+---------------------
+
+1) Type 1 - JDBC ODBC bridge
+		- slowest of all 
+		- 
+2) Type 2
+
+3) Type 3
+
+4) Type 4 - native driver
+		- fastest of all
+		- most preferred
+
+
+the driver 
+	- is a java class
+	- would be present in a jar file
+
+
+Maven - a build tool
+	- helps in managing the jars files/ dependencies required for the project
+	- the main purpose of maven is it is a build tool - to build your project
+
+Gradle - also a build tool
+
+types of execution methods
+--------------------------
+
+// step 3 - create a statement and execute it
+Statement stmt = conn.createStatement();
+
+boolean status = stmt.execute(query); // used to execute DDL queries ( create, alter, drop)
+int rowsAffected = stmt.executeUpdate(query); // used to execute DML queries (insert, update, delete)
+ResultSet rs = stsmt.executeQuery(query); // used to execute DQL queries (select)
+
+types of statements
+-------------------
+1) Statement
+	- here the query will always be compiled and executed at the DB server side 
+2) PreparedStatement
+	- pre-compiled statements
+	- the query is compiled once and executed many times at the DB server side
+	- we can see an increase in performance of the execution of the queries when we execute the same query again and again
+3) CallableStatement
+	- is used to call a stored procedure
+
+
+
+
+
+
+
+
+
