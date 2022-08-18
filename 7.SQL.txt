@@ -16,6 +16,10 @@ D - Delete
 DB - Database
 DBMS - Database Management System/Software
      - a software 
+RDBMS - Relational Database Management System
+      - here data is stored in tables which in turn consists of rows and columns
+      - Eg. Postgres, Oracle, SQL Server, MySql
+NoSql - eg. Mongo db
 
 Database software product and its vendors
 ------------------------------------------
@@ -339,8 +343,130 @@ account_details
 	
 ----------------------------------------------------
 
+Select query in detail
+-----------------------
+SELECT <projection column list>
+	FROM <table name>
+	WHERE <condn>
+	GROUP BY <column name list>
+	HAVING <condn>
+	ORDER BY <column name list> ASC|DESC
+
+
+SELECT * FROM employee_details;
+SELECT emp_id, emp_name FROM employee_details;
+
+display emp_id and emp_name of those employees whose dept_id is 2
+SELECT emp_id, emp_name FROM employee_details WHERE emp_dept_id=2;
+
+display all the details of the employees whose dept_id is 2 in descending order of the employee name
+SELECT emp_id, emp_name, emp_contact, emp_dept_id FROM employee_details WHERE emp_dept_id=2 ORDER BY emp_name DESC;
+
+display all the details of the employees whose dept_id is 2 in ascending order of the employee name
+SELECT emp_id, emp_name, emp_contact, emp_dept_id FROM employee_details WHERE emp_dept_id=2 ORDER BY emp_name;
+
+
+Scalar functions and aggregate functions
+----------------------------------------
+reference 
+	- https://www.postgresql.org/docs/9.2/functions.html
+
+	- a scalar function works on the individial values of the column
+		SELECT upper(book_title) FROM book_details;
+	- an aggregate function works on all the values of the column and produces one output
+		SELECT count(book_title) FROM book_details;
+		SELECT max(book_cost) FROM book_details;
+		SELECT max(book_cost) expensive FROM book_details;
+
+
+groupby and having clause of select query
+------------------------------------------
+	- can apply aggregation by grouping one or many columns
+	- having clause is aplly a condn on the grouping
+	- the where clause applies the restriction/ filter the record before the grouping takes place whereas the having clause applies the restriction/filter after the grouping takes place
+	- try grouping on mutliple columns
+SELECT count(book_genre) FROM book_details;
+SELECT count(book_genre) FROM book_details GROUP BY (book_genre);
+
+fetch the count of books in each genre
+--------------------------------------
+SELECT book_genre, count(book_genre) FROM book_details GROUP BY (book_genre);
+
+fetch the book author and the number of books authored by the authors
+---------------------------------------------------------------------
+SELECT book_author, count(book_author) FROM book_details GROUP BY (book_author);
+
+fetch the book author and the number of books authored by the authors whose count is lesser than 5
+-------------------------------------------------------------------------------------------------
+SELECT book_author, count(book_author) FROM book_details GROUP BY (book_author) HAVING count(book_author)<=5;
+
+fetch the book author and the number of books which costs greater than 30 dollars , authored by the authors whose count is lesser than 5
+-------------------------------------------------------------------------------------------------
+ SELECT book_author, count(book_author) FROM book_details WHERE book_cost>30 GROUP BY (book_author) HAVING count(book_author)<=5;
+
+fetch the details of authors who have authored less than 5 books
+-------------------------------------------------------------------
+SELECT book_author, count(book_author) FROM book_details GROUP BY (book_author) HAVING count(book_author)<=5;
+
+find the most expensive book authored by each author
+----------------------------------------------------
+SELECT book_author, max(book_cost) FROM book_details GROUP BY book_author;
+
+find the most expensive book in the library
+-------------------------------------------
+SELECT max(book_cost) FROM book_details;
 
 
 
+subqueries
+-----------
+	-write to query to display the details of books whose cost is greater than 35 dollars
+		SELECT * FROM book_details WHERE book_cost>35;
+	-write to query to display the details of books whose cost is greater than the average book cost
+		SELECT * FROM book_details WHERE book_cost>(SELECT avg(book_cost) FROM book_details);
+	-if your select query has to twork on an unknown/ computed value we can write a subquery to compute the unknown value and then the outter / main query works on computed value
+	- we further nest the sub query with another sub query
+	- we also have correlated subquery
 
+joins
+------
+- if we have fetch data from 2 or more tables we use joins
+
+department_details
+	dept_id(PK)
+	dept_name
+
+employee_details
+	emp_id(PK)
+	emp_name
+	emp_contact
+	emp_dept_id(FK)
+
+- write a query to display employee id,employee name and department name of each employee
+	SELECT emp_id, emp_name, dept_name FROM employee_details, department_details;
+		this does not give the desired out as each record of the left table is combined with each record table
+	SELECT emp_id, emp_name, dept_name FROM employee_details, department_details WHERE employee_details.emp_dept_id=department_details.dept_id;
+		this would be the correct soln becuase the join takes place on the join condition
+		this style of writing a join is called theta style
+		this is old way of writing a join
+	SELECT emp_id, emp_name, dept_name FROM employee_details INNER JOIN department_details ON employee_details.emp_dept_id=department_details.dept_id;
+		this is the newer way of writing join - join style
+		we use the JOIN keyword and the ON keyword
+
+cartesian products
+--------------------
+A(3, 6, 1)
+B(7, 4)
+A X B = (3, 7) (3, 4) (6, 7) (6, 4) (1, 7) (1, 4)
+
+
+type of joins
+-------------
+- INNER JOIN
+- LEFT JOIN
+- RIGHT JOIN
+- SELF JOIN
+- CROSS JOIN
+- FULL OUTTER JOIN
+- NATURAL JOIN
 
