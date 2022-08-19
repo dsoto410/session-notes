@@ -32,7 +32,7 @@ service layer
 
 dao (Data Access Object) layer
 ------------------------------
-	- my java would want ot interact with a Database. This is the right place to do it
+	- my java would want to interact with a Database. This is the right place to do it
 
 flow of data 
 -------------
